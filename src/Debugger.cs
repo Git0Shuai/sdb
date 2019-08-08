@@ -74,6 +74,10 @@ namespace Mono.Debugger.Client
 
         public static BreakpointStore BreakEvents { get; private set; }
 
+        public static string SrcRootPath { get; set; }
+
+        public static string PathSeparator => "/";
+
         public static bool DebuggeeKilled
         {
             get { return _debuggeeKilled; }
@@ -517,6 +521,15 @@ namespace Mono.Debugger.Client
 
                 _session.Dispose();
                 _session = null;
+            }
+        }
+
+        public static void DisConnect()
+        {
+            Debugger.ResetState();
+            lock (_lock)
+            {
+                _session?.Detach();
             }
         }
 

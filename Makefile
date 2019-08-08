@@ -233,6 +233,8 @@ override srcs = \
 	src/Commands/StepCommand.cs \
 	src/Commands/ThreadCommand.cs \
 	src/Commands/WatchCommand.cs \
+	src/Commands/RootPathCommand.cs \
+	src/Commands/Disconnect.cs \
 	src/AssemblyInfo.cs \
 	src/Color.cs \
 	src/Command.cs \

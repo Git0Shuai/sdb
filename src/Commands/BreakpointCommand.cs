@@ -93,7 +93,7 @@ namespace Mono.Debugger.Client.Commands
 
                     try
                     {
-                        file = Path.GetFullPath(file);
+                        file = GetFullPath(file);
                     }
                     catch (Exception ex)
                     {
@@ -122,6 +122,26 @@ namespace Mono.Debugger.Client.Commands
                     Debugger.Breakpoints.Add(id, Debugger.BreakEvents.Add(file, line));
 
                     Log.Info("Breakpoint '{0}' added at '{1}:{2}'", id, file, line);
+                }
+
+                private string GetFullPath(string file)
+                {
+                    if (Debugger.SrcRootPath == null)
+                    {
+                        return Path.GetFullPath(file);
+                    }
+                    var ret = file.Replace("\\", Debugger.PathSeparator);
+                    if (ret.StartsWith(Debugger.PathSeparator) && Debugger.SrcRootPath.EndsWith(Debugger.PathSeparator))
+                    {
+                        return Debugger.SrcRootPath + ret.Substring(1, ret.Length - 1);
+                    }
+
+                    if (!ret.StartsWith(Debugger.PathSeparator) && !Debugger.SrcRootPath.EndsWith(Debugger.PathSeparator))
+                    {
+                        return Debugger.SrcRootPath + Debugger.PathSeparator + ret;
+                    }
+
+                    return Debugger.SrcRootPath + ret;
                 }
             }
 

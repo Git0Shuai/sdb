@@ -66,6 +66,8 @@ namespace Mono.Debugger.Client.Commands
             AddCommand<StepCommand>();
             AddCommand<ThreadCommand>();
             AddCommand<WatchCommand>();
+            AddCommand<RootPathCommand>();
+            AddCommand<Disconnect>();
         }
 
         public void AddCommands(IEnumerable<Command> commands)
