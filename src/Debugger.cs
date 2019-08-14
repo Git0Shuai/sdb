@@ -388,14 +388,14 @@ namespace Mono.Debugger.Client
 
                 _session.TargetThreadStarted += (sender, e) =>
                 {
-                    Log.Notice("Inferior thread '{0}' ('{1}') started",
-                               e.Thread.Id, e.Thread.Name);
+//                    Log.Notice("Inferior thread '{0}' ('{1}') started",
+//                               e.Thread.Id, e.Thread.Name);
                 };
 
                 _session.TargetThreadStopped += (sender, e) =>
                 {
-                    Log.Notice("Inferior thread '{0}' ('{1}') exited",
-                               e.Thread.Id, e.Thread.Name);
+//                    Log.Notice("Inferior thread '{0}' ('{1}') exited",
+//                               e.Thread.Id, e.Thread.Name);
                 };
             }
         }

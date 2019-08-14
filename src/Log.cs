@@ -44,13 +44,10 @@ namespace Mono.Debugger.Client
 
             lock (Lock)
             {
-                using (var logFile = new StreamWriter("sdb_log.txt", true))
-                {
-                    if (nl)
-                        logFile.WriteLine(str);
-                    else
-                        logFile.Write(str);
-                }
+                if (nl)
+                    Console.WriteLine(str);
+                else
+                    Console.Write(str);
             }
         }
 
