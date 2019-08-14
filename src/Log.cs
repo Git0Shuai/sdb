@@ -23,6 +23,7 @@
 //
 
 using System;
+using System.IO;
 
 namespace Mono.Debugger.Client
 {
@@ -43,10 +44,13 @@ namespace Mono.Debugger.Client
 
             lock (Lock)
             {
-                if (nl)
-                    Console.WriteLine(str);
-                else
-                    Console.Write(str);
+                using (var logFile = new StreamWriter("sdb_log.txt", true))
+                {
+                    if (nl)
+                        logFile.WriteLine(str);
+                    else
+                        logFile.Write(str);
+                }
             }
         }
 
